@@ -1,0 +1,46 @@
+﻿@page "/languages"
+@using FrontEnd.Services
+
+@inject ILanguageService languageService
+
+
+<PageTitle>Languages</PageTitle>
+
+<h1>Languages</h1>
+
+@if (languages.Any())
+{
+        <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Native</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var language in languages)
+            {
+                <tr>
+                    <td>@language.Code</td>
+                    <td>@language.EnglishName</td>
+                    <td>@language.NativeName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else{
+    <p><em>Loading...</em></p>
+}
+
+
+@code {
+    private readonly List<Language> languages = new List<Language>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        languages.AddRange(await languageService.GetLanguagesAsync());
+
+    }
+}

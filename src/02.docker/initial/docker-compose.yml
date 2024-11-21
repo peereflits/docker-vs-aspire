@@ -1,0 +1,17 @@
+# Create a docker-compose file for the entire project
+name: my-docker-test-app
+
+services:
+  database:
+  # Database definition
+
+  backend:
+    container_name: my-backend
+  # backend definition
+
+  frontend:
+    container_name: my-frontend
+  # Frontend definition
+
+volumes:
+  # volumes are needed for the database

@@ -1,0 +1,12 @@
+@Backend_HostAddress = http://localhost:5124
+
+### Ping: is server online
+GET {{Backend_HostAddress}}/api/test/ping
+
+### Get Wether forecast: call into controller & services; no DB hit.
+GET {{Backend_HostAddress}}/weatherforecast
+Accept: application/json
+
+### Get languages: call into controller & services & database.
+GET {{Backend_HostAddress}}/api/test/languages
+Accept: application/json
