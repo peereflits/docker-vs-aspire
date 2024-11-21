@@ -32,7 +32,7 @@ GO
 USE DxtTestDb;
 GO
 
-CREATE USER DxtTestDbReader WITH PASSWORD = N'DxtTestDbReader003$', DEFAULT_SCHEMA=[dbo];
+CREATE USER DxtTestDbReader WITH PASSWORD = N'DxtTestDbR003$', DEFAULT_SCHEMA=[dbo];
 GRANT CONNECT TO [DxtTestDbReader];
 ALTER ROLE [db_datareader]     ADD MEMBER [DxtTestDbReader];
 ALTER ROLE [db_denydatawriter] ADD MEMBER [DxtTestDbReader];

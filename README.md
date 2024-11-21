@@ -4,6 +4,12 @@ This repos contains sample code for the DXT .NET Community meeting on  22 novemb
 
 ## Links
 
+* .NET Aspire overview<br/>
+https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview
+
+* .NET Aspire documentation<br/>
+https://learn.microsoft.com/en-us/dotnet/aspire/
+
 * Adding .NET Aspire to your existing .NET apps<br/>
 https://devblogs.microsoft.com/dotnet/adding-dotnet-aspire-to-your-existing-dotnet-apps/
 

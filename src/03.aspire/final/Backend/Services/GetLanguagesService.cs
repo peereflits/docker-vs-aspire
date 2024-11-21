@@ -8,15 +8,13 @@ internal interface IServiceGetLanguages
     Task<IEnumerable<Language>> Execute();
 }
 
-internal class GetLanguagesService : IServiceGetLanguages
+internal class GetLanguagesService
+(
+    IConfiguration configuration, 
+    ILogger<GetLanguagesService> logger
+) : IServiceGetLanguages
 {
-    private readonly IConfiguration configuration;
     private readonly List<Language> languages = new();
-
-    public GetLanguagesService(IConfiguration configuration)
-    {
-        this.configuration = configuration;
-    }
 
     public async Task<IEnumerable<Language>> Execute()
     {
@@ -30,7 +28,18 @@ internal class GetLanguagesService : IServiceGetLanguages
 
     private async Task<IEnumerable<Language>> GetLanguagesFromDb()
     {
-        await using var con = new SqlConnection(configuration["ConnectionStrings:Default"]);
+        // var connString = Environment.GetEnvironmentVariable("ConnectionStrings__DemoDbs");
+        var connString = configuration["ConnectionStrings:DemoDbs"];
+
+        if (string.IsNullOrEmpty(connString))
+        {
+            logger.LogError("Connection string is missing. Environment variable 'ConnectionStrings__DemoDbs' is empty.");
+            throw new InvalidOperationException("Connection string is missing.");
+        }
+
+        logger.LogInformation(connString);
+
+        await using var con = new SqlConnection(connString);
         IEnumerable<Language> result = await con.QueryAsync<Language>(GetCommand());
         
         return result.ToList();

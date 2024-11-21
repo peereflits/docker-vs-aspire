@@ -31,4 +31,6 @@ The final and completed solution can be found in the `.\02.docker\final` folder.
 
 What files are also changed to make the app up-and-running?
 
+Can you make the app run locally?
+
 What are the advantages and disadvantages of running on Docker?

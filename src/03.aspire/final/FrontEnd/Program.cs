@@ -6,13 +6,14 @@ namespace FrontEnd;
 
 public class Program
 {
+    private const int BackendServerPortNumber = 5001; // See Backend/Program.cs
     public static async Task Main(string[] args)
     {
         WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
         
-        var baseUrl = GetBaseUrl(builder.HostEnvironment.BaseAddress);
+        var baseUrl = new Uri($"https://localhost:{BackendServerPortNumber}");
 
         builder.Services.AddScoped(sp => new HttpClient { BaseAddress = baseUrl });
         builder.Services.AddHttpClient<LanguageService>("LanguageServiceClient",  configureClient => configureClient.BaseAddress = baseUrl);
@@ -23,14 +24,5 @@ public class Program
 
         
         await builder.Build().RunAsync();
-    }
-
-    private static Uri GetBaseUrl(string currentBaseAddress)
-    {
-        return currentBaseAddress switch
-        {
-            "http://localhost:5125/" => new Uri("http://localhost:5124"),
-            _ => throw new ApplicationException($"Unsupported base address: {currentBaseAddress}")
-        };
     }
 }
