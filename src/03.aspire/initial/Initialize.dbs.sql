@@ -1,15 +1,15 @@
 ﻿SET NOCOUNT ON;
 GO
 -- ------------------------------------------------------------------
--- Creates the DxtTestDb database if it doesn't exists       --
+-- Creates the TestDb database if it doesn't exists       --
 -- ------------------------------------------------------------------
-IF DB_ID(N'DxtTestDb') IS NOT NULL
+IF DB_ID(N'TestDb') IS NOT NULL
 BEGIN
 
   DECLARE @Sql1 nvarchar(1000) = N'
-EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N''DxtTestDb'';
-ALTER DATABASE [DxtTestDb] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE;
-DROP DATABASE DxtTestDb;
+EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N''TestDb'';
+ALTER DATABASE [TestDb] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE;
+DROP DATABASE TestDb;
 ';
   EXEC(@Sql1);
 END;
@@ -19,23 +19,23 @@ GO
 RECONFIGURE
 GO
 
-CREATE DATABASE DxtTestDb
+CREATE DATABASE TestDb
   CONTAINMENT = PARTIAL
   COLLATE SQL_Latin1_General_CP1_CI_AS
   WITH DEFAULT_LANGUAGE = english;
 
-DECLARE @Sql2 nvarchar(2000) = N'ALTER AUTHORIZATION ON database::[DxtTestDb] TO ' + QUOTENAME(SYSTEM_USER);
+DECLARE @Sql2 nvarchar(2000) = N'ALTER AUTHORIZATION ON database::[TestDb] TO ' + QUOTENAME(SYSTEM_USER);
 EXECUTE(@Sql2);
 
 GO
 
-USE DxtTestDb;
+USE TestDb;
 GO
 
-CREATE USER DxtTestDbReader WITH PASSWORD = N'DxtTestDbReader003$', DEFAULT_SCHEMA=[dbo];
-GRANT CONNECT TO [DxtTestDbReader];
-ALTER ROLE [db_datareader]     ADD MEMBER [DxtTestDbReader];
-ALTER ROLE [db_denydatawriter] ADD MEMBER [DxtTestDbReader];
+CREATE USER TestDbReader WITH PASSWORD = N'TestDbReader003$', DEFAULT_SCHEMA=[dbo];
+GRANT CONNECT TO [TestDbReader];
+ALTER ROLE [db_datareader]     ADD MEMBER [TestDbReader];
+ALTER ROLE [db_denydatawriter] ADD MEMBER [TestDbReader];
 
 GO
 

@@ -1,6 +1,6 @@
 # DemoOnLocal.sln
 
-This is the default and initial solution/application that should run in a local configuration.
+This is the initial solution/application that should run in a local configuration.
 
 The solution exists of two .NET 9.0 projects and assumes a running SQL Server instance.
 

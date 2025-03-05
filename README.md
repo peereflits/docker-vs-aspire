@@ -1,15 +1,15 @@
-# 2024-11-22 DXT .NET-Community meeting
+# Docker versus Aspire
 
-This repo contains sample code for the DXT .NET Community meeting on  22 november 2024.
+This repo contains sample code that demonstrates sample applications running under Docker and .NET Aspire.
 
-The sample code is build around an application that holds a Blazor WASM frontend, a .NET Core Backend API, that relies on a SQL Server database.
+The sample code is build around an application that holds a Blazor WASM frontend and a .NET Core Backend API that relies on a SQL Server database.
 
 There are three different projects:
-* [local](./src/Readme.01.local.md): the default and initial solution/application that should run in a local configuration (it works on my machine)
-* [docker](./src/Readme.02.docker.md): the default solution that runs on docker locally on Docker Desktop.
-* [aspire](./src/Readme.03.aspire.md): the default solution that runs with .NET Aspire
+* [local](./src/Readme.01.local.md): the initial stand-alone solution/application that runs in a local configuration (it works on my machine :smile:). No Docker. No Aspire. Just on your machine.
+* [docker](./src/Readme.02.docker.md): the solution that runs on docker locally on Docker Desktop.
+* [aspire](./src/Readme.03.aspire.md): the solution that runs with .NET Aspire
 
-Both `docker` and `aspire` have an *initial* solution (a copy of the default solution) with some blank files or projects to be filled in by you; the *final* solution hold a working implementation. 
+Both `docker` and `aspire` have an *initial* solution (a copy of the initial stand-alone solution) with some blank files or projects to be filled in by you; the *final* solution hold a working implementation. 
 
 ## Links
 
